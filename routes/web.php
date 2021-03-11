@@ -241,3 +241,6 @@ Route::get('form/login', function (){
 });
 
 Route::post('login','MyController@loginUser');
+
+// restful api
+Route::resource('nguoidung', 'UsersController');

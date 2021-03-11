@@ -25,8 +25,8 @@ class LaravelRequest extends FormRequest
     {
         return [
             'name'=>'required|unique:users,name',
-            'email'=>'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
-            'password'=>'required',
+                'email'=>'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+                'password'=>'required',
         ];
     }
 

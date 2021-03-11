@@ -23,19 +23,14 @@
             @endforeach
         </ul>
       @endif
-    <form enctype="multipart/form-data" class="form-group mt-4" style="width:500px" method="post" action="{!!url('postDangky')!!}">
+    <form class="form-group mt-4" style="width:500px" method="post" action="{!!url('postDangky')!!}">
         {{ csrf_field() }}
       <label for="name">Name:</label>
       <input type="text" class="form-control" name="name" id="name" placeholder="Name" require>
-      <div style="color: red">{!!$errors -> first('name')!!}</div>
       <label for="email">Email:</label>
       <input type="email" class="form-control" name="email" id="email" placeholder="Email" require>
-      <div style="color: red">{!!$errors -> first('email')!!}</div>
       <label for="password">Password:</label>
       <input type="password" class="form-control" name="password" id="password" placeholder="Password" require>
-      <div style="color: red">{!!$errors -> first('password')!!}</div>
-      <label for="fImages">Upload File:</label>
-      <input type="file" class="form-control" name="fImages" id="">
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
 
