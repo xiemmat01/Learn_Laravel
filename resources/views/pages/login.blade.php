@@ -23,7 +23,7 @@
           @endforeach
         </ul>  
     @endif
-      <form action="{!!url('login')!!}" style="width: 400px" method="post">
+      <form action="{!!url('kt')!!}" style="width: 400px" method="post">
        {{csrf_field()}}
           <label for="username">Username:</label>
           <input type="text" name="username" class="form-control">

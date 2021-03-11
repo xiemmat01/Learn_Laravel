@@ -240,7 +240,7 @@ Route::get('form/login', function (){
     return view('pages.login');
 });
 
-Route::post('login','MyController@loginUser');
+Route::post('kt','AuthController@login');
 
 // restful api
 Route::resource('nguoidung', 'UsersController');

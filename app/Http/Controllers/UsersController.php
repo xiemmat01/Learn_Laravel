@@ -23,7 +23,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        echo "Create database";
+        return view('pages.form');
     }
 
     /**
