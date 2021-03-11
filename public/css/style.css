@@ -1,0 +1,19 @@
+*{
+    margin: 0 auto;
+    padding: 0 auto;
+    box-sizing: border-box;
+}
+.header{
+    width: 100%;
+    min-height: 10vh;
+    background-color: powderblue;
+}
+.content{
+    width: 100%;
+    min-height: 80vh;
+}
+.footer{
+    width: 100%;
+    min-height: 10vh;
+    background-color: purple;
+}
