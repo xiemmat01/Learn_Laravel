@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -184,48 +183,48 @@ Route::get('product/select', function () {
     echo "</pre>";
 });
 Route::get('product/raw', function () {
-    $data = App\Models\Product::whereRaw('price = ?',[100000])->get()->toArray();
+    $data = App\Models\Product::whereRaw('price = ?', [100000])->get()->toArray();
     echo "<pre>";
     print_r($data);
     echo "</pre>";
 });
 
 //thêm mới database
-Route::get('product/create', function(){
+Route::get('product/create', function () {
     $data = [
 
-            'name' => 'test update',
-            'description' => 'Điện thoại samsung',
-            'price' => '40000000',
-            'count' => '10',
-            'id_cate' =>'1'
+        'name' => 'test update',
+        'description' => 'Điện thoại samsung',
+        'price' => '40000000',
+        'count' => '10',
+        'id_cate' => '1',
     ];
     App\Models\Product::create($data);
     echo "successfully !!";
 });
 // cập nhập database
-Route::get('product/update',function(){
+Route::get('product/update', function () {
     $data = App\Models\Product::find(6);
     $data->id_cate = 2;
     $data->save();
     echo "Successfully !!";
 });
 //xóa database
-Route::get('product/delete',function(){
+Route::get('product/delete', function () {
     $data = App\Models\Product::destroy(7);
     echo "Delete sản phẩm thành công !!";
 });
 
 //form request
-Route::get('form/dang-ky',function (){
+Route::get('form/dang-ky', function () {
     return view('pages.form');
 });
 //Route::post('form/dang-ky-thanh-vien',['as' =>'postDangky','uses' => 'MyController@postUsers']);
-Route::post('postDangky','MyController@postUsers');
+Route::post('postDangky', 'MyController@postUsers');
 //Route::any('{all?}', 'MyController@index')->where('all','(.*)');
 
-//Responses 
-Route::get('response/json', function (){
+//Responses
+Route::get('response/json', function () {
     $arr = [
         'name' => 'Điện thoại',
         'price' => '1000$',
@@ -236,11 +235,41 @@ Route::get('response/json', function (){
 });
 
 //Auth
-Route::get('form/login', function (){
+Route::get('form/login', function () {
     return view('pages.login');
 });
 
-Route::post('kt','AuthController@login');
+Route::post('kt', 'AuthController@login');
+
+Route::get('logout', 'AuthController@logout');
+Route::get('thu', function (){
+    return view('pages.thanhcong');
+});
+//session
+Route::group(['middleware'=>['web']], function (){
+    Route::get('session', function () {
+        Session::put('Khoahoc','Lavarel');
+        Session::put('Laptrinh','Web');
+        echo 'đã bật Session';
+        echo '<br/>';
+        // echo Session::get('Khoahoc');
+        //Session::forget('Khoahoc');
+        // Session::flush();
+
+        // if (Session::has('Khoahoc')) {
+        //     echo 'Session đã tồn tại';
+        // }else
+        // {
+        //     echo 'Session không tồn tại';
+        // }
+
+        Session::flash('mess','This is Flash');
+    });
+
+    Route::get('session/flash', function() {
+        echo session('mess');
+    });
+});
 
 // restful api
 Route::resource('nguoidung', 'UsersController');

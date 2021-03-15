@@ -2,21 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
-use App\Models\ThanhVien;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 class AuthController extends Controller
 {
-   public function login (LoginRequest $request){
-        // $user = ThanhVien::whereRaw('username =?',[$request['username']])->get()->toArray();
-        $username = $request['username'];
-        $password = $request['password'];
-        // if (Auth::attempt(['name' => $username, 'password' => $password])) {
-        //     return redirect('/');
-        // }else{
-        //     return "asdasd";
-        // }
-        return $user;
+   public function login(LoginRequest $request)
+   {
+
+      $username = $request['username'];
+      $password = $request['password'];
+
+      // $user = User::find(2);
+      // Auth::login($user);
+      // return view('pages.thanhcong',['user'=>Auth::user()]);
+
+      if (Auth::attempt(['name' => $username, 'password' => $password])) {
+         return view('pages.thanhcong',['user'=>Auth::user()]);
+      } else {
+         return "Đăng nhập không thành công";
+      }
+   }
+
+   public function logout(){
+      Auth::logout();
+      return view('pages.login');
    }
 }
